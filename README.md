@@ -1,1 +1,1 @@
-# Bienvenido a mi proyecto de Python
+# Bienvenido a mi proyecto de Python + Django
