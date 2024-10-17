@@ -2,11 +2,14 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from datetime import datetime
 from django.shortcuts import render
+from inicio.models import Auto, Persona
 
-
-def inicio(request):
-    return HttpResponse('<h1> Soy la pantalla de inicio</h1>') #Se pueden colocar
+def inicio (request):
+    #return HttpResponse('<h1> Soy la pantalla de inicio</h1>') #Se pueden colocar
 #las etiquetas pero hay una forma mas rapida de configurarlo que lo vemos mas adelante.
+
+    return render(request, 'index.html')
+    
 def vista_datos1(request,nombre):
     nombre_mayuscula=nombre.upper()#upper() es una funcion para poner en mayuscula el nombre.
     return HttpResponse(f'Hola {nombre_mayuscula}!!!')
@@ -52,3 +55,17 @@ def segundo_template(request):
 
     #v3
     return render(request, 'segundo_template.html', datos)
+
+def creando_auto(request):
+
+    auto = Auto(marca='Ford', modelo="Focus", anio=2014)
+    auto.save()
+
+    return render(request, 'creando_auto.html', {})
+
+def agrego_personas(request):
+
+    persona = Persona(Nombre='Federico', apellido="Garcia", edad=33)
+    persona.save()
+
+    return render(request, 'agrego_personas.html', {})
